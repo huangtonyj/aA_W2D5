@@ -10,7 +10,16 @@
 
     <div id="second-div"></div>
 
-    <p></p>
+    <p>Do box elements always need a set height and width to be visible? No! Play around with adding text into the p element and see how it expands and shrinks to accomodate its contents.What if we don't want the padding and border to be added on top of the width, but rather be included in the total width calculation? We can accomplish this by setting the box-sizing property to border-box. Do this for the second box and note the results. Note how the content box has shrunken to allow room for the padding and border. NB: The default value for the box-sizing property is content-box.</p>
+  
+  <div id="third-div">
+    <p>Let's get some cat pictures on the screen. Create a new div with class 'image-1-container' and give it a fixed width of 200px and a fixed height of 600px. Also give it a colored background so we can actually see it (you get to pick the color this time). Inside of this new div, create an img tag that points to the file called cat.jpg that's in the assets folder.Note that the image spills out of the div. By default, images will want to render with the full glorious dimensions. How can we 
+    </p> 
+  </div>
+  
+  <div class="image-1-container">
+    <img src="assets/cat.jpg">
+  </div>
   </body>
 </html>
 
