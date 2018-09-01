@@ -14,8 +14,10 @@ class HashMap
   end
 
   def set(key, val)
+    resize! if @count == num_buckets
+
     the_linked_list = @store[key.hash % num_buckets]
-    
+
     unless the_linked_list.include?(key)
       the_linked_list.append(key, val)
       @count += 1
@@ -33,15 +35,15 @@ class HashMap
     if the_linked_list.include?(key)
       the_linked_list.remove(key)
       @count -= 1
-    end 
+    end
   end
 
   def each(&prc)
     @store.each do |linkedlist|
-      linkedlist.each do |key, val|
-        prc.call(key, val)
-      end 
-    end 
+      linkedlist.each do |node|
+          prc.call(node.key, node.val)
+      end
+    end
   end
 
   # uncomment when you have Enumerable included
@@ -62,6 +64,15 @@ class HashMap
   end
 
   def resize!
+    new_store = Array.new(num_buckets * 2) { LinkedList.new }
+
+    @store.each do |linkedlist|
+      linkedlist.each do |node|
+        new_store[node.key.hash % (num_buckets * 2)].append(node.key, node.val)
+      end
+    end
+
+    @store = new_store
   end
 
   def bucket(key)
